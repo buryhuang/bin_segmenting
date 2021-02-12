@@ -26,13 +26,14 @@ current_byte_index = 0
 while True:
     window_values = []
     curr_sum = 0
+    
+    if (current_byte_index + cal_window) >= len(fileContent):
+        break
     for i in range(cal_window):
         byte_val = ord(fileContent[current_byte_index + i])
         curr_sum += byte_val*byte_val
     file_sums.append(curr_sum)
     current_byte_index += 1
-    if current_byte_index >= len(fileContent):
-        break
 
 # print(file_sums)
 
@@ -51,3 +52,5 @@ while True:
     chunk_index += 1
     if current_start >= len(file_sums):
         break
+
+print(((len(fileContent) - current_byte_index), 0))
